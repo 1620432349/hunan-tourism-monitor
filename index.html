@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖南文旅项目申报信息监控</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #333; }
+        .header { background: linear-gradient(135deg, #d4380d, #ad2102); color: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 22px; font-weight: 600; }
+        .header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .stat-card .label { font-size: 13px; color: #888; margin-bottom: 8px; }
+        .stat-card .value { font-size: 28px; font-weight: 700; }
+        .stat-card .value.red { color: #d4380d; }
+        .stat-card .value.orange { color: #d48806; }
+        .stat-card .value.green { color: #52c41a; }
+        .status-bar { padding: 12px 24px; background: #fff; border-bottom: 1px solid #eee; font-size: 13px; color: #888; display: flex; justify-content: space-between; align-items: center; }
+        .toolbar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .filter-group { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .filter-btn { padding: 8px 16px; border: 1px solid #ddd; border-radius: 20px; background: #fff; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+        .filter-btn:hover { border-color: #d4380d; color: #d4380d; }
+        .filter-btn.active { background: #d4380d; color: #fff; border-color: #d4380d; }
+        .filter-btn.active-funding { background: #d46b08; color: #fff; border-color: #d46b08; }
+        .search-box { padding: 8px 16px; border: 1px solid #ddd; border-radius: 20px; font-size: 13px; width: 240px; outline: none; transition: border-color 0.2s; }
+        .search-box:focus { border-color: #d4380d; }
+        .project-list { display: flex; flex-direction: column; gap: 12px; }
+        .project-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: all 0.2s; border-left: 4px solid transparent; }
+        .project-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
+        .project-card.priority-high { border-left-color: #d4380d; }
+        .project-card.priority-medium { border-left-color: #d48806; }
+        .project-card.priority-low { border-left-color: #52c41a; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .card-title { font-size: 16px; font-weight: 600; line-height: 1.5; color: #222; flex: 1; }
+        .card-badge { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 11px; font-weight: 500; white-space: nowrap; margin-left: 12px; }
+        .badge-high { background: #fff1f0; color: #d4380d; border: 1px solid #ffa39e; }
+        .badge-medium { background: #fffbe6; color: #d48806; border: 1px solid #ffe58f; }
+        .badge-low { background: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; }
+        .card-meta { display: flex; gap: 16px; font-size: 13px; color: #888; flex-wrap: wrap; }
+        .card-meta span { display: flex; align-items: center; gap: 4px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+        .btn-open { display: inline-flex; align-items: center; gap: 6px; color: #2f54eb; text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border: 1px solid #2f54eb; border-radius: 4px; transition: all 0.2s; }
+        .btn-open:hover { background: #2f54eb; color: #fff; }
+        .fund-badge { display: inline-block; background: #fff7e6; color: #d46b08; border: 1px solid #ffd591; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+        .card-content-preview { font-size: 13px; color: #666; line-height: 1.6; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .keywords { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+        .keyword-tag { background: #f0f5ff; color: #2f54eb; padding: 2px 10px; border-radius: 10px; font-size: 12px; }
+        .empty-state { text-align: center; padding: 80px 20px; color: #999; }
+        .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+        .loading { text-align: center; padding: 40px; color: #888; }
+        .result-count { font-size: 13px; color: #888; margin-left: 12px; }
+        .update-hint { text-align: center; padding: 24px; background: #fffbe6; border: 1px solid #ffe58f; border-radius: 8px; margin-top: 24px; font-size: 13px; color: #886; }
+        .update-hint code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+        @media (max-width: 768px) {
+            .header { padding: 16px 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
+            .header h1 { font-size: 18px; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .search-box { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>🏔 湖南文旅项目申报信息监控</h1>
+            <div class="subtitle">自动抓取 · 智能识别 · 实时提醒</div>
+        </div>
+    </div>
+    <div class="status-bar">
+        <span>📊 数据更新时间：<strong id="updateTime">加载中...</strong></span>
+        <span id="projectCount"></span>
+    </div>
+    <div class="container">
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div class="label">发现项目总数</div>
+                <div class="value" id="stat-total">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">高优先级项目</div>
+                <div class="value red" id="stat-high">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">中优先级项目</div>
+                <div class="value orange" id="stat-medium">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">低优先级项目</div>
+                <div class="value green" id="stat-low">--</div>
+            </div>
+            <div class="stat-card" style="border: 1px solid #ffd591; background: #fffbe6;">
+                <div class="label">💰 资金支持项目</div>
+                <div class="value" style="color: #d46b08;" id="stat-funding">--</div>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <span style="font-weight:600; margin-right:4px;">筛选:</span>
+            <div class="filter-group" id="filterGroup">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="high">🔴 高优先级</button>
+                <button class="filter-btn" data-filter="medium">🟡 中优先级</button>
+                <button class="filter-btn" data-filter="low">🟢 低优先级</button>
+                <button class="filter-btn" data-filter="funding" style="background:#fff7e6;border-color:#ffd591;">💰 资金支持</button>
+            </div>
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 搜索项目标题/关键词...">
+            <span class="result-count" id="resultCount"></span>
+        </div>
+
+        <div id="projectList" class="project-list">
+            <div class="loading">加载中...</div>
+        </div>
+
+        <div class="update-hint">
+            💡 <strong>数据更新方式：</strong>在本地电脑运行 <code>python export_for_web.py</code> 导出最新数据，然后重新部署到 GitHub Pages 即可。
+        </div>
+    </div>
+
+    <script>
+        // --- 全局状态 ---
+        let allProjects = [];
+        let currentFilter = 'all';
+        let searchKeyword = '';
+
+        // --- 加载数据 ---
+        async function loadData() {
+            try {
+                const resp = await fetch('data.json');
+                const data = await resp.json();
+                allProjects = data.projects || [];
+
+                // 更新统计
+                const stats = data.stats || {};
+                setText('stat-total', stats.total || 0);
+                setText('stat-high', stats.high || 0);
+                setText('stat-medium', stats.medium || 0);
+                setText('stat-low', stats.low || 0);
+                setText('stat-funding', stats.funding || 0);
+                setText('updateTime', data.export_time || '未知');
+                setText('projectCount', '共 ' + (stats.total || 0) + ' 条项目');
+
+                renderProjects();
+            } catch(e) {
+                document.getElementById('projectList').innerHTML =
+                    '<div class="empty-state"><div class="icon">⚠️</div><p>数据加载失败</p><p style="font-size:13px;margin-top:8px;">请确保 data.json 文件存在且格式正确</p></div>';
+            }
+        }
+
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = value;
+        }
+
+        // --- 筛选逻辑 ---
+        function getFilteredProjects() {
+            let filtered = allProjects;
+
+            // 优先级/资金筛选
+            if (currentFilter === 'high') {
+                filtered = filtered.filter(p => p.priority === 'high');
+            } else if (currentFilter === 'medium') {
+                filtered = filtered.filter(p => p.priority === 'medium');
+            } else if (currentFilter === 'low') {
+                filtered = filtered.filter(p => p.priority === 'low');
+            } else if (currentFilter === 'funding') {
+                filtered = filtered.filter(p => p.has_funding);
+            }
+
+            // 搜索关键词
+            if (searchKeyword.trim()) {
+                const kw = searchKeyword.trim().toLowerCase();
+                filtered = filtered.filter(p => {
+                    const title = (p.title || '').toLowerCase();
+                    const keywords = (p.matched_keywords || []).join(' ').toLowerCase();
+                    const content = (p.content || '').toLowerCase();
+                    return title.includes(kw) || keywords.includes(kw) || content.includes(kw);
+                });
+            }
+
+            return filtered;
+        }
+
+        // --- 渲染项目列表 ---
+        function renderProjects() {
+            const container = document.getElementById('projectList');
+            const filtered = getFilteredProjects();
+
+            document.getElementById('resultCount').textContent =
+                '显示 ' + filtered.length + ' / ' + allProjects.length + ' 条';
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">📋</div><p>暂无匹配的项目信息</p></div>';
+                return;
+            }
+
+            const priorityMap = {'high': '高优先级', 'medium': '中优先级', 'low': '低优先级'};
+            const badgeMap = {'high': 'badge-high', 'medium': 'badge-medium', 'low': 'badge-low'};
+            const iconMap = {'high': '🔴', 'medium': '🟡', 'low': '🟢'};
+
+            container.innerHTML = filtered.map(p => {
+                const priority = p.priority || 'low';
+                const keywords = (p.matched_keywords || []).map(k => `<span class="keyword-tag">${esc(k)}</span>`).join('');
+                const deadline = p.deadline ? `<span>⏰ 截止: ${esc(p.deadline)}</span>` : '';
+                const phone = p.contact_info && p.contact_info.phone ? `<span>📞 ${esc(p.contact_info.phone)}</span>` : '';
+                const fundBadge = p.has_funding ? `<span class="fund-badge">💰 资金支持</span>` : '';
+                const preview = p.content ? p.content.substring(0, 120) : '';
+                let hostname = '';
+                try { hostname = new URL(p.url).hostname; } catch(e) {}
+
+                return `
+                <div class="project-card priority-${priority}">
+                    <div class="card-header">
+                        <div class="card-title">${iconMap[priority] || ''} ${esc(p.title)}${fundBadge}</div>
+                        <span class="card-badge ${badgeMap[priority] || ''}">${priorityMap[priority] || priority}</span>
+                    </div>
+                    <div class="card-meta">
+                        <span>📅 ${esc(p.date || '未知日期')}</span>
+                        <span>📂 ${esc(p.source || '')}</span>
+                        ${deadline}
+                        ${phone}
+                    </div>
+                    ${preview ? `<div class="card-content-preview">${esc(preview)}...</div>` : ''}
+                    ${keywords ? `<div class="keywords">${keywords}</div>` : ''}
+                    <div class="card-footer">
+                        <span style="font-size:12px;color:#bbb;">${hostname}</span>
+                        <a class="btn-open" href="${esc(p.url)}" target="_blank" rel="noopener">
+                            🔗 查看原文 →
+                        </a>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function esc(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // --- 筛选按钮 ---
+        document.getElementById('filterGroup').addEventListener('click', function(e) {
+            const btn = e.target.closest('.filter-btn');
+            if (!btn) return;
+
+            currentFilter = btn.dataset.filter;
+            document.querySelectorAll('#filterGroup .filter-btn').forEach(b => {
+                b.classList.remove('active', 'active-funding');
+            });
+            if (currentFilter === 'funding') {
+                btn.classList.add('active-funding');
+            } else {
+                btn.classList.add('active');
+            }
+            renderProjects();
+        });
+
+        // --- 搜索 ---
+        let searchTimer;
+        document.getElementById('searchBox').addEventListener('input', function() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => {
+                searchKeyword = this.value;
+                renderProjects();
+            }, 300);
+        });
+
+        // --- 启动 ---
+        loadData();
+    </script>
+</body>
+</html>
