@@ -181,7 +181,7 @@
       },
       "first_seen": "2026-07-16 15:00:02",
       "last_updated": "2026-07-16 15:39:24",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "专项资金",
@@ -1650,7 +1650,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:19",
       "last_updated": "2026-07-16 15:40:19",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "奖励资金",
@@ -1691,7 +1691,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:00:01",
       "last_updated": "2026-07-16 15:39:23",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "专项资金",
@@ -1729,7 +1729,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:22",
       "last_updated": "2026-07-16 15:40:22",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "项目库"
@@ -1762,7 +1762,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:24",
       "last_updated": "2026-07-16 15:40:24",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "融资"
@@ -1797,7 +1797,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:28",
       "last_updated": "2026-07-16 15:40:28",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "项目库",
@@ -1832,7 +1832,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:28",
       "last_updated": "2026-07-16 15:40:28",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "示范项目"
@@ -1866,7 +1866,7 @@
       },
       "first_seen": "2026-07-16 15:39:36",
       "last_updated": "2026-07-16 15:39:36",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "项目申报"
@@ -2774,7 +2774,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:31",
       "last_updated": "2026-07-16 15:40:31",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 1,
       "funding_keywords": [
         "扶持",
@@ -2811,7 +2811,7 @@
       },
       "first_seen": "2026-07-16 15:39:37",
       "last_updated": "2026-07-16 15:39:37",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 1,
@@ -2844,7 +2844,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:39:37",
       "last_updated": "2026-07-16 15:39:37",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 1,
@@ -3995,7 +3995,7 @@
       },
       "first_seen": "2026-07-16 15:39:35",
       "last_updated": "2026-07-16 15:39:35",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4025,7 +4025,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:39:35",
       "last_updated": "2026-07-16 15:39:35",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4057,7 +4057,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:21",
       "last_updated": "2026-07-16 15:40:21",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4090,7 +4090,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:22",
       "last_updated": "2026-07-16 15:40:22",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4123,7 +4123,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:26",
       "last_updated": "2026-07-16 15:40:26",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4154,7 +4154,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:28",
       "last_updated": "2026-07-16 15:40:28",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4186,7 +4186,7 @@
       },
       "first_seen": "2026-07-16 15:39:36",
       "last_updated": "2026-07-16 15:39:36",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4217,7 +4217,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:39:37",
       "last_updated": "2026-07-16 15:39:37",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -4663,7 +4663,7 @@
       "contact_info": {},
       "first_seen": "2026-07-16 15:40:30",
       "last_updated": "2026-07-16 15:40:30",
-      "notified": 0,
+      "notified": 1,
       "has_funding": 0,
       "funding_keywords": [],
       "is_national_key": 0,
@@ -5146,5 +5146,5 @@
       "has_deadline": 0
     }
   ],
-  "export_time": "2026-07-17 14:50:54"
+  "export_time": "2026-07-17 16:35:33"
 }
