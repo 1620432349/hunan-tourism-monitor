@@ -45,6 +45,11 @@
         .btn-open { display: inline-flex; align-items: center; gap: 6px; color: #2f54eb; text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border: 1px solid #2f54eb; border-radius: 4px; transition: all 0.2s; }
         .btn-open:hover { background: #2f54eb; color: #fff; }
         .fund-badge { display: inline-block; background: #fff7e6; color: #d46b08; border: 1px solid #ffd591; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+        .nation-badge { display: inline-block; background: #f0f5ff; color: #2f54eb; border: 1px solid #adc6ff; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+        .eligible-tag { display: inline-block; background: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+        .eligible-possible { background: #fffbe6; color: #d48806; border-color: #ffe58f; }
+        .eligible-unlikely { background: #fff1f0; color: #cf1322; border-color: #ffa39e; }
+        .expired-tag { display: inline-block; background: #f5f5f5; color: #999; border: 1px solid #d9d9d9; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
         .card-content-preview { font-size: 13px; color: #666; line-height: 1.6; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .keywords { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
         .keyword-tag { background: #f0f5ff; color: #2f54eb; padding: 2px 10px; border-radius: 10px; font-size: 12px; }
@@ -95,6 +100,18 @@
                 <div class="label">💰 资金支持项目</div>
                 <div class="value" style="color: #d46b08;" id="stat-funding">--</div>
             </div>
+            <div class="stat-card" style="border: 1px solid #adc6ff; background: #f0f5ff;">
+                <div class="label">🔬 国家重点/实验室</div>
+                <div class="value" style="color: #2f54eb;" id="stat-national">--</div>
+            </div>
+            <div class="stat-card" style="border: 1px solid #b7eb8f; background: #f6ffed;">
+                <div class="label">✅ 可申报项目</div>
+                <div class="value" style="color: #389e0d;" id="stat-eligible">--</div>
+            </div>
+            <div class="stat-card" style="border: 1px solid #d9d9d9; background: #fafafa;">
+                <div class="label">📋 申报期内有效</div>
+                <div class="value" style="color: #595959;" id="stat-active">--</div>
+            </div>
         </div>
 
         <div class="toolbar">
@@ -105,6 +122,9 @@
                 <button class="filter-btn" data-filter="medium">🟡 中优先级</button>
                 <button class="filter-btn" data-filter="low">🟢 低优先级</button>
                 <button class="filter-btn" data-filter="funding" style="background:#fff7e6;border-color:#ffd591;">💰 资金支持</button>
+                <button class="filter-btn" data-filter="national" style="background:#f0f5ff;border-color:#adc6ff;">🔬 国家重点</button>
+                <button class="filter-btn" data-filter="eligible" style="background:#f6ffed;border-color:#b7eb8f;">✅ 可申报</button>
+                <button class="filter-btn" data-filter="active" style="background:#fafafa;border-color:#d9d9d9;">📋 有效申报</button>
             </div>
             <input type="text" class="search-box" id="searchBox" placeholder="🔍 搜索项目标题/关键词...">
             <span class="result-count" id="resultCount"></span>
@@ -147,8 +167,15 @@
                 setText('stat-medium', stats.medium || 0);
                 setText('stat-low', stats.low || 0);
                 setText('stat-funding', stats.funding || 0);
+                setText('stat-national', stats.national_key || 0);
+                setText('stat-eligible', stats.eligible || 0);
+                setText('stat-active', stats.active || 0);
                 setText('updateTime', data.export_time || '未知');
                 setText('projectCount', '共 ' + (stats.total || 0) + ' 条项目');
+                if (stats.expired !== undefined) {
+                    document.getElementById('projectCount').textContent +=
+                        '（含 ' + stats.expired + ' 条已过期）';
+                }
 
                 renderProjects();
             } catch(e) {
@@ -176,6 +203,12 @@
                 filtered = filtered.filter(p => p.priority === 'low');
             } else if (currentFilter === 'funding') {
                 filtered = filtered.filter(p => p.has_funding);
+            } else if (currentFilter === 'national') {
+                filtered = filtered.filter(p => p.is_national_key);
+            } else if (currentFilter === 'eligible') {
+                filtered = filtered.filter(p => p.is_eligible);
+            } else if (currentFilter === 'active') {
+                filtered = filtered.filter(p => p.is_active);
             }
 
             // 搜索关键词
@@ -215,14 +248,26 @@
                 const deadline = p.deadline ? `<span>⏰ 截止: ${esc(p.deadline)}</span>` : '';
                 const phone = p.contact_info && p.contact_info.phone ? `<span>📞 ${esc(p.contact_info.phone)}</span>` : '';
                 const fundBadge = p.has_funding ? `<span class="fund-badge">💰 资金支持</span>` : '';
+                const nationBadge = p.is_national_key ? `<span class="nation-badge">🔬 国家重点</span>` : '';
+                const expiredTag = p.is_expired ? `<span class="expired-tag">⚠️ 已过期</span>` : '';
+                let eligibleTag = '';
+                if (p.eligibility_level === 'eligible') {
+                    eligibleTag = `<span class="eligible-tag">✅ 可申报</span>`;
+                } else if (p.eligibility_level === 'possible') {
+                    eligibleTag = `<span class="eligible-tag eligible-possible">🤔 可能可报</span>`;
+                } else if (p.eligibility_level === 'unlikely') {
+                    eligibleTag = `<span class="eligible-tag eligible-unlikely">❌ 不匹配</span>`;
+                }
                 const preview = p.content ? p.content.substring(0, 120) : '';
                 let hostname = '';
                 try { hostname = new URL(p.url).hostname; } catch(e) {}
 
+                const badgeRow = [fundBadge, nationBadge, eligibleTag, expiredTag].filter(Boolean).join('');
+
                 return `
-                <div class="project-card priority-${priority}">
+                <div class="project-card priority-${priority}${p.is_expired ? ' expired-card' : ''}">
                     <div class="card-header">
-                        <div class="card-title">${iconMap[priority] || ''} ${esc(p.title)}${fundBadge}</div>
+                        <div class="card-title">${iconMap[priority] || ''} ${esc(p.title)}${badgeRow ? ' ' + badgeRow : ''}</div>
                         <span class="card-badge ${badgeMap[priority] || ''}">${priorityMap[priority] || priority}</span>
                     </div>
                     <div class="card-meta">
