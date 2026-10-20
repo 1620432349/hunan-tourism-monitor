@@ -1,15 +1,15 @@
 {
   "stats": {
-    "total": 142,
-    "high": 116,
+    "total": 144,
+    "high": 118,
     "medium": 10,
     "low": 16,
-    "funding": 72,
-    "national_key": 34,
-    "eligible": 99,
-    "active": 129,
+    "funding": 73,
+    "national_key": 35,
+    "eligible": 101,
+    "active": 131,
     "expired": 13,
-    "last_crawl": "2026-09-11 18:47:18"
+    "last_crawl": "2026-10-20 15:08:06"
   },
   "projects": [
     {
@@ -855,6 +855,40 @@
       "is_active": 0,
       "is_expired": 1,
       "has_deadline": 1
+    },
+    {
+      "id": 146,
+      "url_hash": "e978446b69fa0d15f86c1e806744c1de",
+      "title": "第十三届中国旅游产业发展年会在湖北十堰举办",
+      "url": "https://www.mct.gov.cn/whzx/bnsj/whcys/202610/t20261019_967405.html",
+      "date": "2026-10-19",
+      "source": "文化和旅游部-产业发展司",
+      "content": "10月18日，第十三届中国旅游产业发展年会在湖北省十堰市武当山举办。\n本届年会以“聚力·焕新·开局”为主题，围绕“‘十五五’时期文化和旅游产业发展的模式和路径”“落实旅游强国建设要求 推动入境旅游提质增效”“体育IP赋能文旅品牌建设 共促产业融合发展”“AI赋能文旅产业高质量发展的探索与实践——让文旅从‘看见山水’走向‘读懂中国’”“打造文商旅产城多业态融合场景 激活大众消费新动能”“IP聚力 存量焕新——文旅+激活城市消费新场景”开展主旨演讲，举办了文旅体商全域聚能促消费、激发县域旅游经济活力谋发展、聚力协同讲好文旅故事圆桌对话，邀请产学研领域代表交流实践经验。年会现场还发布了《2026中国旅游产业影响力报告》，揭晓了“2026中国旅游产业影响力案例”。\n本届年会由文化和旅游部产业发展司指导，中国旅游出版传媒集团、湖北省文化和旅游厅、十堰市人民政府主办。文化和旅游部、部分省区市文化和旅游行政部门、全国重点文旅企业集团、投融资机构、旅行商代表，文化和旅游、传播与营销等领域资深专家学者以及媒体代表等共260余人参加年会。\n（范朝慧）",
+      "priority": "high",
+      "is_project": 1,
+      "matched_keywords": [
+        "融合发展",
+        "产业融合",
+        "文旅"
+      ],
+      "enterprise_relevant": 1,
+      "deadline": "",
+      "contact_info": {},
+      "first_seen": "2026-10-20 15:08:06",
+      "last_updated": "2026-10-20 15:08:06",
+      "notified": 1,
+      "has_funding": 1,
+      "funding_keywords": [
+        "融资"
+      ],
+      "is_national_key": 0,
+      "national_key_keywords": [],
+      "is_eligible": 1,
+      "eligibility_level": "possible",
+      "eligibility_reason": "可能匹配: 文旅企业",
+      "is_active": 1,
+      "is_expired": 0,
+      "has_deadline": 0
     },
     {
       "id": 144,
@@ -3210,6 +3244,41 @@
       "has_deadline": 0
     },
     {
+      "id": 145,
+      "url_hash": "71dfec9deed62cb3bbe01009bccfb912",
+      "title": "2019年文化艺术和旅游研究项目信息化发展专项      经费预算编制相关说明",
+      "url": "https://www.mct.gov.cn/whzx/bnsj/whkjs/201906/t20190611_844270.html",
+      "date": "2019-06-11",
+      "source": "文化和旅游部-科技教育司",
+      "content": "2019年文化部banner嵌入\n文旅办公\n|\n简\n|\n繁\n|\n无障碍浏览\n返回手机版\n首　　页\n机构简介\n部领导\n主要职责\n联系我们\n机构设置\n信息发布\n时政要闻\n焦点新闻\n领导活动\n公告通知\n政策法规\n政策解读\n工作信息\n党建工作\n直属单位\n全国联播\n热点专题\n图片新闻\n专项工作\n派驻机构\n政务公开\n政务服务\n我要查询\n办事事项\n办事大厅\n政务数据\n业务链接\n在线文化艺术服务\n公共服务\n展演讲座\n数字资源\n出行提示\n5A级旅游景区天气\n互动交流\n新闻发布会\n在线访谈\n公众留言\n意见征集\n全国文化和旅游...\n2019年文化艺术和旅游研究项目信息化发展专项      经费预算编制相关说明\n2019年文化艺术和旅游研究项目信息化发...\n当前位置：\n科技教育司\n科技教育司\n2019年文化艺术和旅游研究项目信息化发展专项\n经费预算编制相关说明\n发布时间：2019-06-11 10:12\n来源：\n编辑：科技教育司\n信息来源：\n2019-06-11\n2019年文化艺术和旅游研究项目信息化发展专项经费预算编制说明\n分享到：\n微信分享“扫一扫”\n【返回顶部】\n【打印本页】\n【关闭窗口】\n上一篇：\n文化和旅游部科技教育司关于举办文化艺术和旅游职业院校骨干师资培训班的通知\n下一篇：\n2019年度国家文化和旅游科技创新工程项目评审工作相关说明",
+      "priority": "high",
+      "is_project": 1,
+      "matched_keywords": [
+        "文化和旅游科技创新",
+        "景区",
+        "文旅",
+        "A级"
+      ],
+      "enterprise_relevant": 1,
+      "deadline": "",
+      "contact_info": {},
+      "first_seen": "2026-10-20 15:08:00",
+      "last_updated": "2026-10-20 15:08:00",
+      "notified": 1,
+      "has_funding": 0,
+      "funding_keywords": [],
+      "is_national_key": 1,
+      "national_key_keywords": [
+        "国家文化和旅游科技创新"
+      ],
+      "is_eligible": 1,
+      "eligibility_level": "possible",
+      "eligibility_reason": "可能匹配: 5A级",
+      "is_active": 1,
+      "is_expired": 0,
+      "has_deadline": 0
+    },
+    {
       "id": 77,
       "url_hash": "43dd15b0bb6e0eb87c72bb01dcef08b4",
       "title": "2019年公安机关网络安全执法检查自查表",
@@ -5251,5 +5320,5 @@
       "has_deadline": 0
     }
   ],
-  "export_time": "2026-10-20 09:04:32"
+  "export_time": "2026-10-20 15:08:33"
 }
